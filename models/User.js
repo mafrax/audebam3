@@ -47,6 +47,7 @@ User.getAll = function (callback) {
 };
 
 User.getBy = function (field, value, callback) {
+	console.log(value);
 	var qp = {
 		query: [
 			'MATCH (user:User)','WHERE ' + field + ' = {value}','RETURN user',
@@ -61,8 +62,10 @@ console.log(qp);
 	db.cypher(qp, function (err, result) {
 		if (err) return callback(err);
 		if (!result[0]) {
+			console.log('1');
 			callback(null, null);
 		} else {
+			console.log('2');
 			callback(null, result[0]['user']);
 		}
 	});

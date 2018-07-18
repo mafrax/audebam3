@@ -1258,7 +1258,7 @@
 
 							<ul class="account-settings">
 								<li>
-									<a href="/29-YourAccount-AccountSettings">
+									<a href="/29-YourAccount-AccountSettings/<%= user.properties.localEmail %>">
 
 										<svg class="olymp-menu-icon"><use xlink:href="olympus/src/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
 
@@ -1268,8 +1268,9 @@
 								<li>
 									<a href="olympus/src/36-FavPage-SettingsAndCreatePopup.html">
 										<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="olympus/src/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-
-										<span>Create Fav Page</span>
+				
+											<span><%= user.properties.localEmail %></span>
+										
 									</a>
 								</li>
 								<li>
@@ -1834,6 +1835,7 @@
 								<%= user.properties.firstName %> <%= user.properties.lastName %> </a>
 							<div class="country">Location</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

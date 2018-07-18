@@ -42,10 +42,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
+console.log(__dirname);
+
 require('./routes/index.js')(app, passport);
 require('./routes/users.js')(app, passport);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 

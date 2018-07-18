@@ -11,6 +11,9 @@ module.exports = function(app, passport) {
 
 	// PROFILE SECTION =========================
 	app.get('/profile', isLoggedIn, function(req, res) {
+		console.log(req.user.properties);
+		console.log(req.body.username);
+		console.log(req.user.properties.firstName);
 		res.render('profile.ejs', {
 			user : req.user,
 			message : req.flash('connectMessage')
@@ -37,6 +40,7 @@ module.exports = function(app, passport) {
 			res.redirect('/profile');
 		});
 	});
+
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
