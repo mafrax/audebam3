@@ -37,7 +37,15 @@ module.exports = function(app, passport) {
 				if (req.body.lastName) {
 					updateUser.props.lastName = req.body.lastName;
 				} 
-				console.log(updateUser);
+				if (req.body.datetimepicker){
+					updateUser.props.birthDay = req.body.datetimepicker;
+				}
+				if (req.body.gender){
+					updateUser.props.gender = req.body.gender;
+				}
+
+		console.log(updateUser);
+
 		User.update(updateUser, function(err, user) {
 			if (err)
 				throw err;
