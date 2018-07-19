@@ -32,6 +32,13 @@ module.exports = function(app, passport) {
 	app.get('/29-YourAccount-AccountSettings/:username', function (req, res) {
 		console.log('YEEEEEHA');
 		console.log(passport);
+		User.getAll(function(err,users){
+			console.log(users);
+			console.log(users[0].user.properties.firstName);
+			users.forEach(element => {
+				console.log(element);
+			});
+		})
 				res.render('29-YourAccount-AccountSettings.ejs', {
 					user: req.user
 				});
