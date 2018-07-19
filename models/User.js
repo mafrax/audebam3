@@ -168,7 +168,16 @@ User.update = function (data, callback) {
 if(data.props.city){
 	City.getAll(function(err,cities){
 		console.log(cities);
-		if(!cities.includes(data.props.city)){
+		var foundCity = new Boolean(false);
+		cities.forEach(c => {
+			console.log(c);
+			if(c.city.properties.cityName == data.props.city){
+				foundCity = true;
+			} 
+		});
+		console.log(foundCity);
+		if(foundCity.valueOf() === false){
+		
 				var newCity = {};
 				newCity.cityName = data.props.city;
 						
@@ -178,7 +187,6 @@ if(data.props.city){
 						if (err)
 						return next(err);
 						console.log(city);
-						return done(null, city);
 					});
 				}})
 		}
