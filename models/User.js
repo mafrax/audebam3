@@ -4,7 +4,7 @@
 var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://neo4j:mafrax@localhost:7474');
 var bcrypt = require('bcrypt-nodejs');
-
+var City = require('../models/city');
 // private constructor:
 var User = module.exports = function User(_node) {
 	// all we'll really store is the node; the rest of our properties will be
@@ -164,6 +164,26 @@ User.update = function (data, callback) {
 			props: data.props,
 		}
 	}
+
+if(data.props.city){
+	City.getAll(function(err,cities){
+		console.log(cities);
+		if(!cities.includes(data.props.city)){
+				var newCity = {};
+				newCity.cityName = data.props.city;
+						
+					City.create(newCity, function (err, city) {
+						
+						console.log(err);
+						if (err)
+						return next(err);
+						console.log(city);
+						return done(null, city);
+					});
+				}})
+		}
+
+
 console.log(qp);
 	db.cypher(qp, function (err, results) {
 		if (err) return callback(err);

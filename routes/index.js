@@ -43,7 +43,9 @@ module.exports = function(app, passport) {
 				if (req.body.gender){
 					updateUser.props.gender = req.body.gender;
 				}
-
+				if (req.body.city){
+					updateUser.props.city = req.body.city;
+				}
 		console.log(updateUser);
 
 		User.update(updateUser, function(err, user) {
