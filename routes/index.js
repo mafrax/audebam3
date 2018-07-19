@@ -33,7 +33,11 @@ module.exports = function(app, passport) {
 			updateUser.props = {};
 				if (req.body.username) {
 					updateUser.props.username = req.body.username;
-				}
+				} 
+				if (req.body.lastName) {
+					updateUser.props.lastName = req.body.lastName;
+				} 
+				console.log(updateUser);
 		User.update(updateUser, function(err, user) {
 			if (err)
 				throw err;

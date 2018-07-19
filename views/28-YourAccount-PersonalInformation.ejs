@@ -1859,38 +1859,38 @@
 					
 					<!-- Personal Information Form  -->
 					
-					<form>
+					<form action="/user/update" method="post" class="content">
 						<div class="row">
 					
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="form-group label-floating">
 									<label class="control-label">First Name</label>
-									<input class="form-control" placeholder="" type="text" value="James">
+									<input class="form-control" placeholder="" type="text" value=<%= user.properties.firstName %>>
 								</div>
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Your Email</label>
-									<input class="form-control" placeholder="" type="email" value="jspiegel@yourmail.com">
+									<input class="form-control"  placeholder="" type="email" >
 								</div>
 					
 								<div class="form-group date-time-picker label-floating">
 									<label class="control-label">Your Birthday</label>
 									<input name="datetimepicker" value="10/24/1984" />
 									<span class="input-group-addon">
-															<svg class="olymp-month-calendar-icon icon"><use xlink:href="/olympus/src/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
-														</span>
+										<svg class="olymp-month-calendar-icon icon"><use xlink:href="/olympus/src/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
+									</span>
 								</div>
 							</div>
 					
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="form-group label-floating">
 									<label class="control-label">Last Name</label>
-									<input class="form-control" placeholder="" type="text" value="Spiegel">
+									<input class="form-control" name="lastName" placeholder="" type="text" >
 								</div>
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Your Website</label>
-									<input class="form-control" placeholder="" type="email" value="daydreamzagency.com">
+									<input class="form-control" placeholder="" type="email" value="daydream@zagency.com">
 								</div>
 					
 					
@@ -2001,7 +2001,7 @@
 								<button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
 							</div>
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-								<button class="btn btn-primary btn-lg full-width">Save all Changes</button>
+								<input type="submit" value="Update"/>
 							</div>
 					
 						</div>

@@ -151,6 +151,7 @@ User.create = function (data, callback) {
 };
 
 User.update = function (data, callback) {
+	console.log(data);
 	var qp = {
 		query: [
 			'MATCH (user:User)',
@@ -163,7 +164,7 @@ User.update = function (data, callback) {
 			props: data.props,
 		}
 	}
-
+console.log(qp);
 	db.cypher(qp, function (err, results) {
 		if (err) return callback(err);
 		callback(null, results[0]['user']);
