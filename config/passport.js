@@ -88,16 +88,23 @@ module.exports = function(passport) {
 	},
 	function(req, email, password, done) {
 		// asynchronous
+
+		console.log('entered passport signup');
+		console.log('user.localEmail');
+		console.log(email);
 		process.nextTick(function() {
 			//  Whether we're signing up or connecting an account, we'll need
 			//  to know if the email address is in use.
 			User.getBy('user.localEmail', email, function(err, existingUser) {
 				// if there are any errors, return the error
-				if (err)
+				if (err){
 					return done(err);
+					console.log('error 1 (any)');
+				}
 
 				// check to see if there's already a user with that email
 				if (existingUser) {
+					console.log('existing user');
 					return done(null, false, req.flash('loginMessage', 'That email is already in use.'));
 				}
 

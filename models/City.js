@@ -9,6 +9,35 @@ var City = module.exports = function City(_node) {
 	this._node = _node;
 }
 
+City.getBy = function (field, value, callback) {
+	console.log('entered getby');
+	console.log(value);
+	console.log(field);
+	var qp = {
+		query: [
+			'MATCH (city:City)','WHERE ' + field + ' = {value}','RETURN city',
+		]
+		.join('\n')
+		,
+		params: {
+			value: value
+		}
+	}
+console.log(qp);
+	db.cypher(qp, function (err, result) {
+		if (err) return callback(err);
+		if (!result[0]) {
+			console.log('1');
+			console.log(result[0]);
+			callback(null, null);
+		} else {
+			console.log('2');
+			console.log(result[0]);
+			callback(null, result[0]['city']);
+		}
+	});
+}
+
 // creates the user and persists (saves) it to the db, incl. indexing it:
 City.create = function (data, callback) {
   console.log(data);

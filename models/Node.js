@@ -9,47 +9,72 @@ var NodeJS = module.exports = function NodeJS(_node) {
 	this._node = _node;
 }
 
-NodeJS.addUserRelationship = function(relation, nodeId, otherNodeId, callback) {
+NodeJS.createRelationShip = function(relation){
+var rel = '-[rel:'+relation+']->';
+return rel;
+}
+
+NodeJS.addRelationship = function(relation, nodeId, otherNodeId, callback) {
+	console.log('Node relation add');
+	console.log(relation);
 	switch (relation) {
 		case 'follow':
+		console.log('follow');
 			var qp = {
 				query: [
 					'MATCH (user:User),(other:User)',
-					'WHERE ID(user) = {userId} AND ID(other) = {otherId}',
+					'WHERE ID(user) = {nodeId} AND ID(other) = {otherNodeId}',
 					'MERGE (user)-[rel:follows]->(other)',
 					'ON CREATE SET rel.timestamp = timestamp()',
 					'RETURN rel'
 				].join('\n'),
 				params: {
-					userId: userId,
-					otherId: otherId,
+					userId: nodeId,
+					otherId: otherNodeId,
 				}
 			}
+		console.log(qp);
 		break;
 		case 'unfollow':
+		console.log('unfollow');
 			var qp = {
 				query: [
 					'MATCH (user:User) -[rel:follows]-> (other:User)',
-					'WHERE ID(user) = {userId} AND ID(other) = {otherId}',
+					'WHERE ID(user) = {nodeId} AND ID(other) = {otherNodeId}',
 					'DELETE rel'
 				].join('\n'),
 				params: {
-					userId: userId,
-					otherId: otherId,
+					userId: nodeId,
+					otherId: otherNodeId,
 				}
 			}
+			console.log(qp);
 		break;
+		default :
+		console.log('Default');
+		var qp = {
+			query: [
+				'MATCH (user:User),(other:City)',
+				' WHERE ID(user) = '+nodeId+' AND ID(other) = '+otherNodeId+
+				' CREATE (user)'+NodeJS.createRelationShip(relation)+'(other)',
+				' RETURN rel'
+			].join('\n')
+		}
+		console.log(qp);
+	break;
 	}
-
+	
+	console.log('querry update add relationship');
 	db.cypher(qp, function (err, result) {
-		console.log(err);
-		console.log('result');
-		console.log(result);
-		callback(err);
-	});
-}
+	console.log(result);
+	console.log(err);
+	if (err) return callback(err);
+		callback(null, result);
+		});
+	};
 
-Node.getUserRelationships = function(id, callback) {
+
+NodeJS.getUserRelationships = function(id, callback) {
 	var qp = {
 		query: [
 			'START n=node({userId})',

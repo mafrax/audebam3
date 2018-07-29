@@ -5,6 +5,7 @@ var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://neo4j:mafrax@localhost:7474');
 var bcrypt = require('bcrypt-nodejs');
 var City = require('../models/city');
+var NodeJS = require('../models/Node');
 // private constructor:
 var User = module.exports = function User(_node) {
 	// all we'll really store is the node; the rest of our properties will be
@@ -47,6 +48,7 @@ User.getAll = function (callback) {
 };
 
 User.getBy = function (field, value, callback) {
+	console.log('entered getby');
 	console.log(value);
 	var qp = {
 		query: [
@@ -131,6 +133,7 @@ User.getUserRelationships = function(id, callback) {
 
 // creates the user and persists (saves) it to the db, incl. indexing it:
 User.create = function (data, callback) {
+	console.log('entered create function');
 	console.log(data);
 	var qp = {
 		query: [
@@ -187,6 +190,12 @@ if(data.props.city){
 						if (err)
 						return next(err);
 						console.log(city);
+						NodeJS.addRelationship("livesIn", data.id , city._id , function(err){
+							console.log(err);
+							console.
+							log('error');
+							if (err) return next(err);
+						});
 					});
 				}})
 		}

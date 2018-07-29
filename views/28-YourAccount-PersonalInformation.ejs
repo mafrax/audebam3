@@ -1870,7 +1870,7 @@
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Your Email</label>
-									<input class="form-control"  placeholder="" type="email" >
+									<input class="form-control"  placeholder="" type="email" value=<%= user.properties.localEmail %>>
 								</div>
 					
 								<div class="form-group date-time-picker label-floating">
@@ -1885,18 +1885,18 @@
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="form-group label-floating">
 									<label class="control-label">Last Name</label>
-									<input class="form-control" name="lastName" placeholder="" type="text" >
+									<input class="form-control" name="lastName" placeholder="" type="text" value=<%= user.properties.lastName %> >
 								</div>
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Your Website</label>
-									<input class="form-control" placeholder="" type="email" value="daydream@zagency.com">
+									<input class="form-control" placeholder="" type="email" name="webSite">
 								</div>
 					
 					
 								<div class="form-group label-floating is-empty">
 									<label class="control-label">Your Phone Number</label>
-									<input class="form-control" placeholder="" type="text">
+									<input class="form-control" placeholder="" type="text" name="phoneNumber">
 								</div>
 							</div>
 					
@@ -1927,7 +1927,7 @@
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="form-group label-floating">
 									<label class="control-label">Write a little description about you</label>
-									<textarea class="form-control" placeholder="">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56</textarea>
+									<textarea class="form-control" placeholder=""></textarea>
 								</div>
 					
 								<div class="form-group label-floating is-select">
@@ -1940,18 +1940,18 @@
 					
 								<div class="form-group label-floating is-empty">
 									<label class="control-label">Religious Belifs</label>
-									<input class="form-control" placeholder="" type="text">
+									<input class="form-control" placeholder="" type="text" name="religion">
 								</div>
 							</div>
 							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="form-group label-floating is-empty">
 									<label class="control-label">Your Birthplace</label>
-									<input class="form-control" placeholder="" type="text">
+									<input class="form-control" placeholder="" type="text" name="birthPlace">
 								</div>
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Your Occupation</label>
-									<input class="form-control" placeholder="" type="text" value="UI/UX Designer">
+									<input class="form-control" placeholder="" type="text" name="profession">
 								</div>
 					
 								<div class="form-group label-floating is-select">
@@ -1964,7 +1964,7 @@
 					
 								<div class="form-group label-floating">
 									<label class="control-label">Political Incline</label>
-									<input class="form-control" placeholder="" type="text" value="Democrat">
+									<input class="form-control" placeholder="" type="text" name="politcalIncline">
 								</div>
 							</div>
 							<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
