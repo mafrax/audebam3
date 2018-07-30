@@ -2,6 +2,7 @@ var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://neo4j:mafrax@localhost:7474');
 var bcrypt = require('bcrypt-nodejs');
 var City = require('../models/city');
+var User = require('../models/User');
 // private constructor:
 var NodeJS = module.exports = function NodeJS(_node) {
 	// all we'll really store is the node; the rest of our properties will be
@@ -75,6 +76,30 @@ NodeJS.addRelationship = function(relation, nodeId, otherNodeId, callback) {
 
 
 NodeJS.getUserRelationships = function(id, callback) {
+	var qp = {
+		query: [
+			'START n=node({userId})',
+			'MATCH n-[r]-(m)',
+			'RETURN n,r,m'
+		].join('\n'),
+		params: {
+			userId: id
+		}
+	}
+
+	db.cypher(qp, function (err, result) {
+		if (err) return callback(err);
+		callback(null, result);
+	});
+}
+
+NodeJS.updateUserRelationship = function(id, callback) {
+	User.getUserRelationships(id, function(user,relation, otherNode, err){
+		console.log(otherNode);
+		if (relation === "livesIn"){
+			console.log("rel found");
+		}
+	})
 	var qp = {
 		query: [
 			'START n=node({userId})',

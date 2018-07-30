@@ -197,6 +197,13 @@ if(data.props.city){
 							if (err) return next(err);
 						});
 					});
+				}else{
+					NodeJS.updateUserRelationship(data.id, function(err){
+						console.log(err);
+						console.
+						log('error');
+						if (err) return next(err);
+					});
 				}})
 		}
 
