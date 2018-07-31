@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 	app.get('/user/:username', function (req, res) {
 		
 		User.getBy('user.username', req.params.username, function (err, user) {
-			console.log(req.params.username);
+
 			if (err) return next(err);
 			User.getUserRelationships(user._id, function (err, relationships) {
 				if (err) return next(err);
@@ -30,11 +30,8 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/29-YourAccount-AccountSettings/:username', function (req, res) {
-		console.log('YEEEEEHA');
-		console.log(passport);
+
 		User.getAll(function(err,users){
-			console.log(users);
-			console.log(users[0].user.properties.firstName);
 			users.forEach(element => {
 				console.log(element);
 			});
@@ -47,8 +44,6 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/29-YourAccount-AccountSettings/:username/28-YourAccount-PersonalInformation', function (req, res) {
-		console.log('YEEEEEHA');
-		console.log(passport);
 				res.render('28-YourAccount-PersonalInformation.ejs', {
 					user: req.user
 				});

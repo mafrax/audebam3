@@ -48,8 +48,7 @@ User.getAll = function (callback) {
 };
 
 User.getBy = function (field, value, callback) {
-	console.log('entered getby');
-	console.log(value);
+
 	var qp = {
 		query: [
 			'MATCH (user:User)','WHERE ' + field + ' = {value}','RETURN user',
@@ -60,14 +59,14 @@ User.getBy = function (field, value, callback) {
 			value: value
 		}
 	}
-console.log(qp);
+
 	db.cypher(qp, function (err, result) {
 		if (err) return callback(err);
 		if (!result[0]) {
-			console.log('1');
+
 			callback(null, null);
 		} else {
-			console.log('2');
+
 			callback(null, result[0]['user']);
 		}
 	});
@@ -106,9 +105,6 @@ User.addUserRelationship = function(relation, userId, otherId, callback) {
 	}
 
 	db.cypher(qp, function (err, result) {
-		console.log(err);
-		console.log('result');
-		console.log(result);
 		callback(err);
 	});
 }
@@ -133,8 +129,7 @@ User.getUserRelationships = function(id, callback) {
 
 // creates the user and persists (saves) it to the db, incl. indexing it:
 User.create = function (data, callback) {
-	console.log('entered create function');
-	console.log(data);
+
 	var qp = {
 		query: [
 			'CREATE (user:User {data})',
@@ -144,17 +139,16 @@ User.create = function (data, callback) {
 			data: data
 		}
 	}
-	console.log('after query');
-	console.log(qp);
+
 	db.cypher(qp, function (err, results) {
 		if (err) return callback(err);
 		callback(null, results[0]['user']);
-		console.log(results);
+
 	});
 };
 
 User.update = function (data, callback) {
-	console.log(data);
+
 	var qp = {
 		query: [
 			'MATCH (user:User)',
@@ -171,7 +165,7 @@ User.update = function (data, callback) {
 if(data.props.city){
 
 	City.getBy('city.cityName', data.props.city, function(err, city){
-	console.log(city);
+
 		if(!city){
 		
 				var newCity = {};
@@ -179,22 +173,17 @@ if(data.props.city){
 						
 					City.create(newCity, function (err, city) {
 						
-						console.log(err);
+
 						if (err)
 						return next(err);
-						console.log(city);
-						NodeJS.addRelationship("livesIn", data.id , city._id , function(err){
-							console.log(err);
-							console.
-							log('error');
+
+						NodeJS.addRelationship("livesIn",data.id, city._id, function(err){
+
 							if (err) return next(err);
 						});
 					});
 				}else{
 					NodeJS.updateUserRelationship(data.id, city._id, function(err){
-						console.log(err);
-						console.
-						log('error');
 						if (err) return next(err);
 					});
 				}
