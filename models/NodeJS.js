@@ -57,8 +57,7 @@ NodeJS.addRelationship = function(relation, nodeId, otherNodeId, callback) {
 			query: [
 				'MATCH (user:User),(other:City)',
 				' WHERE ID(user) = '+nodeId+' AND ID(other) = '+otherNodeId+
-				' CREATE (user)'+NodeJS.createRelationShip(relation)+'(other)',
-				' RETURN rel'
+				' CREATE (user)'+NodeJS.createRelationShip(relation)+'(other)'
 			].join('\n')
 		}
 		console.log(qp);
@@ -86,6 +85,7 @@ NodeJS.getUserRelationships = function(id, callback) {
 			userId: id
 		}
 	}
+	console.log(qp);
 
 	db.cypher(qp, function (err, result) {
 		if (err) return callback(err);
@@ -93,26 +93,38 @@ NodeJS.getUserRelationships = function(id, callback) {
 	});
 }
 
-NodeJS.updateUserRelationship = function(id, callback) {
-	User.getUserRelationships(id, function(user,relation, otherNode, err){
-		console.log(otherNode);
-		if (relation === "livesIn"){
+NodeJS.updateUserRelationship = function(id,city, callback) {
+	User.getUserRelationships(id, function(err, result){
+		console.log(result);
+		console.log(result[0].n);
+		console.log(result[0].r);
+		console.log(result[0].m);
+		if (result[0].r.type === "livesIn"){
 			console.log("rel found");
+			var qp = {
+				query: [
+					'MATCH (user:User) -[oldRel:livesIn]-> (other:City)',
+					' WHERE ID(user) = {userId} AND ID(other) = {otherId}',
+					' MATCH (newOther:City)',
+					' WHERE ID(newOther) = {newOtherID}',
+					' DELETE oldRel',					
+					' CREATE (user) '+NodeJS.createRelationShip("livesIn")+' (newOther)',
+					' CREATE (user) -[newOldRel:livedIn]-> (other)'
+				].join('\n'),
+				params: {
+					userId: id,
+					otherId: result[0].m._id,
+					newOtherID: city
+				}
+			}
+
+			db.cypher(qp, function (err, result) {
+				if (err) return callback(err);
+				callback(null, result);
+			})
+		} else {
+			console.log("fail");
 		}
 	})
-	var qp = {
-		query: [
-			'START n=node({userId})',
-			'MATCH n-[r]-(m)',
-			'RETURN n,r,m'
-		].join('\n'),
-		params: {
-			userId: id
-		}
-	}
-
-	db.cypher(qp, function (err, result) {
-		if (err) return callback(err);
-		callback(null, result);
-	});
+	console.log(id);
 }

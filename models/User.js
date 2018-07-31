@@ -5,7 +5,7 @@ var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://neo4j:mafrax@localhost:7474');
 var bcrypt = require('bcrypt-nodejs');
 var City = require('../models/city');
-var NodeJS = require('../models/Node');
+var NodeJS = require('../models/NodeJS');
 // private constructor:
 var User = module.exports = function User(_node) {
 	// all we'll really store is the node; the rest of our properties will be
@@ -117,7 +117,7 @@ User.getUserRelationships = function(id, callback) {
 	var qp = {
 		query: [
 			'START n=node({userId})',
-			'MATCH n-[r]-(m)',
+			'MATCH (n)-[r]-(m)',
 			'RETURN n,r,m'
 		].join('\n'),
 		params: {
@@ -169,17 +169,10 @@ User.update = function (data, callback) {
 	}
 
 if(data.props.city){
-	City.getAll(function(err,cities){
-		console.log(cities);
-		var foundCity = new Boolean(false);
-		cities.forEach(c => {
-			console.log(c);
-			if(c.city.properties.cityName == data.props.city){
-				foundCity = true;
-			} 
-		});
-		console.log(foundCity);
-		if(foundCity.valueOf() === false){
+
+	City.getBy('city.cityName', data.props.city, function(err, city){
+	console.log(city);
+		if(!city){
 		
 				var newCity = {};
 				newCity.cityName = data.props.city;
@@ -198,13 +191,14 @@ if(data.props.city){
 						});
 					});
 				}else{
-					NodeJS.updateUserRelationship(data.id, function(err){
+					NodeJS.updateUserRelationship(data.id, city._id, function(err){
 						console.log(err);
 						console.
 						log('error');
 						if (err) return next(err);
 					});
-				}})
+				}
+			})
 		}
 
 
