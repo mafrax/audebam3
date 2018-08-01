@@ -33,7 +33,7 @@ NodeJS.addRelationship = function(relation, nodeId, otherNodeId, callback) {
 					otherId: otherNodeId,
 				}
 			}
-;
+
 		break;
 		case 'unfollow':
 		console.log('unfollow');
@@ -124,7 +124,7 @@ NodeJS.updateUserRelationship = function(id,city, callback) {
 					})
 				} else if (element.r.type === "livedIn" ) {
 					console.log("else if")
-				
+					
 				} else {
 					console.log("fail");
 					
@@ -134,10 +134,10 @@ NodeJS.updateUserRelationship = function(id,city, callback) {
 				NodeJS.addRelationship("livesIn", id, city , function(err){
 					if (err) return callback(err);
 					callback(null, result);
-				})
+				});
 			}
 			
 		});
-	})
+	});
 	console.log(id);
-}
+};
