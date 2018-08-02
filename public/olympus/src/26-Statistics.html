@@ -2106,7 +2106,7 @@
 							</span>
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-primary" ></span>
+							<span class="skills-item-meter-active bg-primary" id="e2" ></span>
 							<input type="range" min="0" max="100" value="50" >
 						</div>
 					</div>
@@ -2120,8 +2120,8 @@
 								</span></span>
 						</div>
 						<div class="skills-item-meter">
-								<span class="skills-item-meter-active bg-purple" id="e1"></span>
-								<input type="range" min="0" max="100" value="50" id="myRange">
+								<span class="skills-item-meter-active bg-purple" id="e1" ></span>
+								<input type="range" min="0" max="100" value="50" >
 						</div>
 						
 
@@ -2130,30 +2130,42 @@
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Blue Progress</span>
-							<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="79" data-from="0"></span><span class="units">79%</span></span>
+							<span class="skills-item-count">
+									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+									<span class="units">									
+									</span></span>						
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-blue" style="width: 79%"></span>
+							<span class="skills-item-meter-active bg-blue" ></span>
+							<input type="range" min="0" max="100" value="50" >
 						</div>
 					</div>
 
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Aqua Progress</span>
-							<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="34" data-from="0"></span><span class="units">34%</span></span>
+							<span class="skills-item-count">
+									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+									<span class="units">									
+									</span></span>
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-breez" style="width: 34%"></span>
+							<span class="skills-item-meter-active bg-breez" ></span>
+							<input type="range" min="0" max="100" value="50" >
 						</div>
 					</div>
 
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Yellow Progress</span>
-							<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="95" data-from="0"></span><span class="units">95%</span></span>
+							<span class="skills-item-count">
+									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+									<span class="units">									
+									</span></span>
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-yellow" style="width: 95%"></span>
+							<span class="skills-item-meter-active bg-yellow" ></span>
+							<input type="range" min="0" max="100" value="50" >
 						</div>
 					</div>
 				</div>
@@ -2171,17 +2183,17 @@
 
 						slider_els[i].addEventListener('input', function() {
 							var grandParent = this.parentElement.parentElement;
-							 var brothers = this.parentElement.childNodes;
+							 var brother = this.parentElement.childNodes[1];
 							 var uncles = grandParent.childNodes;
 							 var correctCousin = null; 
 
 							for (var j=0; j<uncles.length;j++){
 								var cousins = uncles[j].childNodes;
-
+								console.log(cousins);
 								for (var k=0; k<cousins.length;k++){
 									if (cousins[k].className == "skills-item-count") {
 										var nieces = cousins[k].childNodes;
-										for (var l=0; l<nieces.length;l++){
+										for (var l=0; l<nieces.length;l++){									
 											if (nieces[k].className == "units") {
 												correctCousin = nieces[k];
 											}
@@ -2190,14 +2202,13 @@
 								}		
 							}	
 						}
-							for (var j=0; j<brothers.length;j++){												
-								if(brothers[j].id == "e1"){
-									if(brothers[j].className == "skills-item-meter-active bg-purple skills-animate"){
-										correctCousin.innerHTML = this.value + "%";
-										brothers[j].style.width = this.value + "%";
-									}
-								}									
-						}
+																
+							
+								correctCousin.innerHTML = this.value + "%";									
+								brother.style.width = this.value + "%";
+									
+																	
+						
 					})
 					}
 				
