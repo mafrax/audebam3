@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="Bootstrap/dist/css/bootstrap-grid.css">
 
 	<!-- Main Styles CSS -->
-	<link rel="stylesheet" type="text/css" href="css/main.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/fonts.min.css">
 
 	<!-- Main Font -->
@@ -2099,33 +2099,31 @@
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Orange Gradient Progress</span>
-							<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span><span class="units">62%</span></span>
+							<span class="skills-item-count">
+									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+									<span class="units">									
+									</span></span>
+							</span>
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-primary" style="width: 62%"></span>
+							<span class="skills-item-meter-active bg-primary" ></span>
+							<input type="range" min="0" max="100" value="50" >
 						</div>
 					</div>
 
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Violet Progress</span>
-							<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span><span class="units"><span id="demo"></span>%</span></span>
+							<span class="skills-item-count">
+								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+								<span class="units">									
+								</span></span>
 						</div>
 						<div class="skills-item-meter">
-								<input class="skills-item-meter-active bg-purple" type="range" min="1" max="100" value="50" id="myRange">
-						
+								<span class="skills-item-meter-active bg-purple" id="e1"></span>
+								<input type="range" min="0" max="100" value="50" id="myRange">
 						</div>
-
-						<script>
-								var slider = document.getElementById("myRange");
-								var output = document.getElementById("demo");
-								output.innerHTML = slider.value; // Display the default slider value
-	
-								// Update the current slider value (each time you drag the slider handle)
-								slider.oninput = function() {
-									output.innerHTML = this.value;
-								}
-						</script>
+						
 
 					</div>
 
@@ -2161,6 +2159,49 @@
 				</div>
 
 			</div>
+			<script>
+				
+					var slider_els = document.querySelectorAll('input[type=range]');
+					var n_sliders = slider_els.length;	
+					
+					for(var i = 0; i < n_sliders; i++) {
+						// Update the current slider value (each time you drag the slider handle)
+						var notes = null;
+						var output = null;
+
+						slider_els[i].addEventListener('input', function() {
+							var grandParent = this.parentElement.parentElement;
+							 var brothers = this.parentElement.childNodes;
+							 var uncles = grandParent.childNodes;
+							 var correctCousin = null; 
+
+							for (var j=0; j<uncles.length;j++){
+								var cousins = uncles[j].childNodes;
+
+								for (var k=0; k<cousins.length;k++){
+									if (cousins[k].className == "skills-item-count") {
+										var nieces = cousins[k].childNodes;
+										for (var l=0; l<nieces.length;l++){
+											if (nieces[k].className == "units") {
+												correctCousin = nieces[k];
+											}
+
+										}
+								}		
+							}	
+						}
+							for (var j=0; j<brothers.length;j++){												
+								if(brothers[j].id == "e1"){
+									if(brothers[j].className == "skills-item-meter-active bg-purple skills-animate"){
+										correctCousin.innerHTML = this.value + "%";
+										brothers[j].style.width = this.value + "%";
+									}
+								}									
+						}
+					})
+					}
+				
+			</script>
 		</div>
 
 

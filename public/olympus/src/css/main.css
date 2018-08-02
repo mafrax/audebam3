@@ -4176,6 +4176,8 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
   .fixed-sidebar .mCustomScrollbar {
     max-height: calc(100vh - 70px); } }
 
+
+
 /*------------- #SKILLS --------------*/
 .skills-item {
   margin-bottom: 20px; }
@@ -4208,6 +4210,9 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
   .skills-item-meter-active.skills-animate-opacity {
     -webkit-animation: skills-animated-opacity .2s ease-out;
             animation: skills-animated-opacity .2s ease-out; }
+  
+            
+
 
 @-webkit-keyframes skills-animated {
   0% {
@@ -4224,6 +4229,51 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 @keyframes skills-animated-opacity {
   100% {
     opacity: 1; } }
+
+/*------------- #inputs --------------*/
+input[type="range"] {
+  position: absolute;
+  left:-14px;
+  bottom:0px;
+  top: -12px;
+  margin-left: 1em;
+}
+/* input[type="range"]::after,
+input[type="range"]::before {
+  position: absolute;
+  top: 1em;
+  color: rgb(250, 24, 24);
+}
+input[type="range"]::before {
+  left:0em;
+  content: attr(min);
+}
+input[type="range"]::after {
+  right: 0em;
+  content: attr(max);
+}     */
+
+/* ------------- #CustomInputs --------------
+.skills-item-meter-active input[type="range"] {
+position: absolute;
+left:-10px;
+bottom:0px;
+margin-left: 1em;
+}
+.skills-item-meter-active input[type="range"]::after,
+.skills-item-meter-active input[type="range"]::before {
+position: absolute;
+top: 1em;
+color: rgb(238, 9, 9);
+}
+.skills-item-meter-active input[type="range"]::before {
+left:0em;
+content: attr(min);
+}
+.skills-item-meter-active input[type="range"]::after {
+right: 0em;
+content: attr(max);
+}  */
 
 /*------------- #FRIENDS --------------*/
 .friend-header-thumb {
