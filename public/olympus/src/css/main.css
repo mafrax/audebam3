@@ -4231,12 +4231,13 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
     opacity: 1; } }
 
 /*------------- #inputs --------------*/
-input[type="range"] {
+input.truc {
   position: absolute;
   left:-14px;
   bottom:0px;
   top: -12px;
   margin-left: 1em;
+  color: #007aff;
 }
 /* input[type="range"]::after,
 input[type="range"]::before {
@@ -11474,8 +11475,9 @@ select.selectpicker {
 .ranges {
   font-size: 11px;
   float: none;
-  margin: 4px;
-  text-align: left; }
+  margin: -4000px;
+  text-align: left;
+  color: #00E56B; }
 
 .ranges ul {
   list-style: none;
