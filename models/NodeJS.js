@@ -92,6 +92,28 @@ NodeJS.getUserRelationships = function(id, callback) {
 	});
 }
 
+NodeJS.getUserRelationshipsbyType = function(id,type, callback) {
+	console.log("type");
+	console.log(type);
+	var qp = {
+		query: [
+			'START n=node({nodeId})',
+			' MATCH (n)-[r]-(m)',
+			' WHERE type(r) = {relation}',
+			' RETURN m'
+		].join('\n'),
+		params: {
+			nodeId: id,
+			relation: type,
+		}
+	};
+	console.log(qp);
+	db.cypher(qp, function (err, result) {
+		if (err) return callback(err);
+		callback(null, result);
+	});
+};
+
 NodeJS.updateUserRelationship = function(id,city, callback) {
 	console.log("entered update user relationship");
 	NodeJS.getUserRelationships(id, function(err, result){
