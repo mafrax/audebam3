@@ -51,6 +51,12 @@ module.exports = function(app, passport) {
 		
 	});
 
+	app.get('/Statistics', function (req, res) {
+		res.render('Statistics.ejs', {
+			user: req.user
+		});
+	});
+
 	app.post('/user/:username/:relation', function (req, res) {
 		if (!req.user) {
 			res.status(401).body({redirectTo: '/login'});
