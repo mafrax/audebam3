@@ -2103,11 +2103,12 @@
 							<span class="skills-item-count">
 									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
 									<span class="units">									
-									</span></span>
-							</span>
+									</span>
+								</span>
+							
 						</div>
 						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-primary" id="e2" ></span>
+							<span class="skills-item-meter-active bg-primary"></span>
 							<input type="range" min="-100" max="100" value="0" >
 						</div>
 					</div>
@@ -2118,10 +2119,11 @@
 							<span class="skills-item-count">
 								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
 								<span class="units">									
-								</span></span>
+								</span>
+							</span>
 						</div>
 						<div class="skills-item-meter">
-								<span class="skills-item-meter-active bg-purple" id="e1" ></span>
+								<span class="skills-item-meter-active bg-purple" ></span>
 								<input type="range" min="-100" max="100" value="0" >
 						</div>
 						
@@ -2134,7 +2136,8 @@
 							<span class="skills-item-count">
 									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
 									<span class="units">									
-									</span></span>						
+									</span>
+								</span>						
 						</div>
 						<div class="skills-item-meter">
 							<span class="skills-item-meter-active bg-blue" ></span>
@@ -2145,10 +2148,12 @@
 					<div class="skills-item">
 						<div class="skills-item-info">
 							<span class="skills-item-title">Aqua Progress</span>
-							<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-									<span class="units">									
-									</span>
+							<span class="skills-item-count">
+								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
+								<span class="units">									
 								</span>
+							</span>
+						</span>
 						</div>
 						<div class="skills-item-meter">
 							<span class="skills-item-meter-active bg-breez" ></span>
@@ -2199,16 +2204,16 @@
 					var slider_counts = document.querySelectorAll("span.units");
 					var slider_title = document.querySelectorAll("span.skills-item-title");
 					var n_sliders = slider_els.length;	
-					
 					for(var i = 0; i < n_sliders; i++) {
 						// Update the current slider value (each time you drag the slider handle)
-
+						
 						slider_els[i].setAttribute("id", "slider"+i);
 						slider_counts[i].setAttribute("id", "counter"+i);
 						// slider_els[i].setAttribute("name", slider_title[i].textContent);
-
+						
 						slider_els[i].addEventListener('input', function() {
 							var brother = this.parentElement.childNodes[1];										
+							console.log(slider_counts[i]);
 							slider_counts[i].innerHTML = this.value;									
 							brother.style.width = 50 + this.value/2 + "%";
 						})
