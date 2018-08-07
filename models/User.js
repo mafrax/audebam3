@@ -119,13 +119,35 @@ User.getUserRelationships = function(id, callback) {
 		params: {
 			userId: id
 		}
-	}
+	};
 
 	db.cypher(qp, function (err, result) {
 		if (err) return callback(err);
 		callback(null, result);
 	});
-}
+};
+
+User.getUserRelationshipsbyType = function(id,type, callback) {
+	console.log("type");
+	console.log(type);
+	var qp = {
+		query: [
+			'START n=node({userId})',
+			' MATCH (n)-[r]-(m)',
+			' WHERE type(r) = {relation}',
+			' RETURN m'
+		].join('\n'),
+		params: {
+			userId: id,
+			relation: type,
+		}
+	};
+	console.log(qp);
+	db.cypher(qp, function (err, result) {
+		if (err) return callback(err);
+		callback(null, result);
+	});
+};
 
 // creates the user and persists (saves) it to the db, incl. indexing it:
 User.create = function (data, callback) {
@@ -172,17 +194,25 @@ if(data.props.city){
 				newCity.cityName = data.props.city;
 						
 					City.create(newCity, function (err, city) {
-						
-
+						console.log("truc");
+						User.getUserRelationshipsbyType(data.id,'livesIn', function(err, result){
+							console.log("result");
+							console.log(result);
+								if(result != null && result.length != null	&& result.length > 0){
+									NodeJS.updateUserRelationship(data.id, city._id, function(err){
+										if (err) return next(err);
+									});
+								} else {
+									NodeJS.addRelationship('livesIn',data.id, city._id, function(err){
+										if (err) return next(err);
+									});
+								}
+								if (err) return next(err);
+						});		
 						if (err)
 						return next(err);
-
-						NodeJS.addRelationship("livesIn",data.id, city._id, function(err){
-
-							if (err) return next(err);
-						});
 					});
-				}else{
+				} else {
 					NodeJS.updateUserRelationship(data.id, city._id, function(err){
 						if (err) return next(err);
 					});

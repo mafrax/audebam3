@@ -2723,6 +2723,7 @@ img {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #e6ecf5;
+  display: inline-block;
   margin-bottom: 15px; }
   .ui-block .ui-block-title:last-child {
     border-bottom: 0; }
@@ -2771,7 +2772,8 @@ img {
   border-bottom: none; }
 
 .ui-block-content {
-  padding: 24px 23px 23px; }
+  padding: 24px 23px 23px;
+   }
 
 /*------------- Responsive mode styles --------------*/
 @media (max-width: 1200px) {

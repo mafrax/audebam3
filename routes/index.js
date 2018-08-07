@@ -26,6 +26,7 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
+
 	// Update User
 	app.post('/user/update', isLoggedIn, function(req, res) {
 		var updateUser = {};
@@ -55,6 +56,38 @@ module.exports = function(app, passport) {
 		});
 	});
 
+		// Update User
+		app.post('/user/save', isLoggedIn, function(req, res) {
+			console.log("save entered");
+			console.log(req);
+			var updateUser = {};
+				updateUser.id = req.user._id;
+				updateUser.props = {};
+					if (req.body.username) {
+						updateUser.props.username = req.body.username;
+					} 
+					if (req.body.lastName) {
+						updateUser.props.lastName = req.body.lastName;
+					} 
+					if (req.body.datetimepicker){
+						updateUser.props.birthDay = req.body.datetimepicker;
+					}
+					if (req.body.gender){
+						updateUser.props.gender = req.body.gender;
+					}
+					if (req.body.city){
+						updateUser.props.city = req.body.city;
+					}
+			console.log(updateUser);
+	
+			for(var key in req.body) {
+				if (req.body.hasOwnProperty(key)) {
+					item = req.body[key];
+					console.log(item);
+				  }
+			}
+			
+		});
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

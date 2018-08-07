@@ -76,7 +76,7 @@ NodeJS.getUserRelationships = function(id, callback) {
 	var qp = {
 		query: [
 			'START n=node({userId})',
-			'MATCH n-[r]-(m)',
+			'MATCH (n)-[r]-(m)',
 			'RETURN n,r,m'
 		].join('\n'),
 		params: {
@@ -84,6 +84,7 @@ NodeJS.getUserRelationships = function(id, callback) {
 		}
 	}
 
+	console.log("query user relations:" + qp);
 
 	db.cypher(qp, function (err, result) {
 		if (err) return callback(err);
@@ -91,14 +92,39 @@ NodeJS.getUserRelationships = function(id, callback) {
 	});
 }
 
-NodeJS.updateUserRelationship = function(id,city, callback) {
-	User.getUserRelationships(id, function(err, result){
+NodeJS.getUserRelationshipsbyType = function(id,type, callback) {
+	console.log("type");
+	console.log(type);
+	var qp = {
+		query: [
+			'START n=node({nodeId})',
+			' MATCH (n)-[r]-(m)',
+			' WHERE type(r) = {relation}',
+			' RETURN m'
+		].join('\n'),
+		params: {
+			nodeId: id,
+			relation: type,
+		}
+	};
+	console.log(qp);
+	db.cypher(qp, function (err, result) {
+		if (err) return callback(err);
+		callback(null, result);
+	});
+};
 
+NodeJS.updateUserRelationship = function(id,city, callback) {
+	console.log("entered update user relationship");
+	NodeJS.getUserRelationships(id, function(err, result){
 		console.log(result[0].n);
 		console.log(result[0].r);
 		console.log(result[0].m);
+		
 		result.forEach(element => {
-			if(element.r){
+			console.log("for e");
+			console.log(element);
+			
 				if (element.r.type === "livesIn"){
 					console.log("rel found");
 					var qp = {
@@ -117,25 +143,17 @@ NodeJS.updateUserRelationship = function(id,city, callback) {
 							newOtherID: city
 						}
 					}
-		
+					console.log("in livesIn");
 					db.cypher(qp, function (err, result) {
 						if (err) return callback(err);
 						callback(null, result);
-					})
+					});
 				} else if (element.r.type === "livedIn" ) {
-					console.log("else if")
+					console.log("else if");
 					
 				} else {
-					console.log("fail");
-					
+					console.log("fail");					
 				}
-
-			} else {
-				NodeJS.addRelationship("livesIn", id, city , function(err){
-					if (err) return callback(err);
-					callback(null, result);
-				});
-			}
 			
 		});
 	});
