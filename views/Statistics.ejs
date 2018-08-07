@@ -2163,9 +2163,9 @@
 
 					<div class="skills-item">
 						<div class="skills-item-info">
-							<span class="skills-item-title" id="title1">Yellow Progress</span>
-							<button type="button" id="edit_button" value="Edit" class="editbutton" onclick="edit_row()" >Edit</button>
-							<button type="button" id="save_button" value="Save" class="sauvegardebutton" onclick="save_row()" >Save</button>
+							<span class="skills-item-title" id="title4">Yellow Progress</span>
+							<button type="button" id="edit_button4" value="Edit" class="editbutton" onclick="edit_row()" >Edit</button>
+							<button type="button" id="save_button4" value="Save" class="sauvegardebutton" onclick="save_row()" >Save</button>
 							<span class="skills-item-count">
 								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
 									<span class="skillunits" id="counter4" >									
@@ -2176,8 +2176,8 @@
 								<span class="skills-item-meter-active bg-blue" style="width: 50%"></span><br>
 						</div>
 						<div class="skills-item-meter" >
-							<span class="skills-item-meter-active bg-yellow" ></span>
-							<input class="truc" type="range" min="-100" max="100" oninput="link_slider('slider4')" id="slider4">
+							<span class="skills-item-meter-active bg-yellow" id="sima4"></span>
+							<input class="truc" type="range" min="-100" max="100" oninput="link_slider(slider4)" id="slider4">
 						</div>
 					</div>
 				</div>
@@ -2215,39 +2215,43 @@
 				// 	}
 				// }
 					
-					function link_slider(id){
+					function link_slider(slider){
 							// var max_div = document.getElementById("progressBar1");
-							console.log(id);
-							var slider = document.getElementById(id);
+							
+							// var slider = document.getElementById(id);
 							console.log(slider);
-							var brother = slider.parentElement.childNodes[1];
-							console.log(brother);
+							console.log(slider.parentElement);
 							var match = slider.id.match(/\d+/);
 							var div_number = parseInt(match[0], 10);
+							var brother = document.getElementById("sima"+div_number);
+							console.log(brother);
 							console.log(div_number);
 							var counter = document.getElementById("counter"+div_number);
 							console.log(slider.value);
 							counter.innerHTML = slider.value;									
-							brother.style.width = 50 + slider.value/2 + "%";	
+							brother.style.width = 50 + slider.value/2 + "%";
+							brother.style.opacity = 1;	
 						}
 						
 						
 						http://talkerscode.com/webtricks/add-edit-and-delete-rows-from-table-dynamically-using-javascript.php
-						document.getElementById("save_button").style.display="none";
+						document.getElementById("save_button4").style.display="none";
 						
-						function edit_row(){									
-						document.getElementById("edit_button").style.display="none";
-						document.getElementById("save_button").style.display="inline-block";
-							var name=document.getElementById("title1");																			
+						function edit_row(no){	
+						console.log("edit_button"+no);
+						console.log(document.getElementById("edit_button"+no));								
+						document.getElementById("edit_button"+no).style.display="none";
+						document.getElementById("save_button"+no).style.display="inline-block";
+							var name=document.getElementById("title"+no);																			
 							var name_data=name.innerHTML;																			
-							name.innerHTML="<input type='text' id='name_text' value='"+name_data+"'>";
+							name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
 							}
 
-					function save_row(){
-						var name_val=document.getElementById("name_text").value;								
-						document.getElementById("title1").innerHTML=name_val;
-						document.getElementById("edit_button").style.display="inline-block";
-						document.getElementById("save_button").style.display="none";
+					function save_row(no){
+						var name_val=document.getElementById("name_text"+no).value;								
+						document.getElementById("title"+no).innerHTML=name_val;
+						document.getElementById("edit_button"+no).style.display="inline-block";
+						document.getElementById("save_button"+no).style.display="none";
 							}
 
 					function add_criterion(){
@@ -2261,8 +2265,8 @@
 						var table=document.getElementById("progressBar1");
 						var html = 		'<div class="skills-item-info id="sii'+new_numero+'">'+
 											'<span class="skills-item-title" id="title'+new_numero+'">Yellow Progress</span>'+
-											'<button type="button" id="edit_button'+new_numero+'" value="Edit" class="editbutton" onclick="edit_row()" >Edit</button>'+
-											'<button type="button" id="save_button'+new_numero+'" value="Save" class="sauvegardebutton" onclick="save_row()" >Save</button>'+
+											'<button type="button" id="edit_button'+new_numero+'" value="Edit" class="editbutton" onclick="edit_row('+new_numero+')" >Edit</button>'+
+											'<button type="button" id="save_button'+new_numero+'" value="Save" class="sauvegardebutton" onclick="save_row('+new_numero+')" >Save</button>'+
 												'<span class="skills-item-count" id="sic'+new_numero+'">'+
 													'<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0" id="countanimate'+new_numero+'"></span>'+
 													'<span class="skillunits" id="counter'+new_numero+'" >	'+								
@@ -2270,11 +2274,11 @@
 												'</span>'+
 										'</div>'+
 										'<div class="skills-item-meter" id="simGlobal'+new_numero+'">'+
-												'<span class="skills-item-meter-active bg-blue" style="width: 50%" id="simaGlobal'+new_numero+'"></span><br>'+
+												'<span class="skills-item-meter-active bg-blue" style="width: 50%; opacity: 1;" id="simaGlobal'+new_numero+'"></span><br>'+
 										'</div>'+
 										'<div class="skills-item-meter" id="sim'+new_numero+'">'+
 											'<span class="skills-item-meter-active bg-yellow" id="sima'+new_numero+'"></span>'+
-											'<input class="truc" type="range" min="-100" max="100" id="slider'+new_numero+'" oninput="link_slider('slider'+new_numero+'")">'+
+											'<input class="truc" type="range" min="-100" max="100" id="slider'+new_numero+'" oninput="link_slider(slider'+new_numero+')">'+
 										'</div>';
 									
 						var new_element = document.createElement("div");
@@ -2283,7 +2287,7 @@
 						new_element.innerHTML = html;
 						console.log(new_element);
 						table.appendChild(new_element);
-
+						document.getElementById("save_button"+new_numero).style.display="none";
 
 						}
 			</script>
@@ -2338,7 +2342,7 @@
 							</a>
 
 							<div class="monthly-count">
-								1.536
+								1.536y
 								<span class="period">Messages</span>
 							</div>
 						</div>
@@ -2355,7 +2359,7 @@
 									exercitation.
 								</span>
 							</div>
-						</div>
+						</div>)
 					</div>
 				</div>
 
