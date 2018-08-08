@@ -2088,6 +2088,7 @@
 		</div>
 
 
+		
 		<div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 			<form action='/user/save' method="post" class="content">
 			<div class="ui-block" data-mh="pie-chart">
@@ -2097,78 +2098,14 @@
 				</div>
 
 				<div class="ui-block-content " id="progressBar1">
-					<div class="skills-item" onload="linksliders()">
-						<div class="skills-item-info">
-							<span class="skills-item-title">Orange Gradient Progress</span>
-							<span class="skills-item-count">
-									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-									<span class="skillunits" > 									
-									</span>
-								</span>
-							
-						</div>
-						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-primary"></span>
-							<input class="truc" type="range" min="-100" max="100" value="0" >
-						</div>
-					</div>
-
 					<div class="skills-item">
 						<div class="skills-item-info">
-							<span class="skills-item-title">Violet Progress</span>
+							<span class="skills-item-title" id="title0">Yellow Progress</span>
+							<button type="button" id="edit_button0" value="Edit" class="button-success pure-button" onclick="edit_row(0)" >Edit</button>
+							<button type="button" id="save_button0" value="Save" class="button-success pure-secondary" onclick="save_row(0)" >Save</button>
 							<span class="skills-item-count">
 								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-								<span class="skillunits" >									
-								</span>
-							</span>
-						</div>
-						<div class="skills-item-meter">
-								<span class="skills-item-meter-active bg-purple" ></span>
-								<input class="truc" type="range" min="-100" max="100" value="0" >
-						</div>
-						
-
-					</div>
-
-					<div class="skills-item">
-						<div class="skills-item-info">
-							<span class="skills-item-title">Blue Progress</span>
-							<span class="skills-item-count">
-									<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-									<span class="skillunits" >									
-									</span>
-								</span>						
-						</div>
-						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-blue" ></span>
-							<input class="truc" type="range" min="-100" max="100" value="0">
-						</div>
-					</div>
-
-					<div class="skills-item">
-						<div class="skills-item-info">
-							<span class="skills-item-title">Aqua Progress</span>
-							<span class="skills-item-count">
-								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-								<span class="skillunits" >									
-								</span>
-							</span>
-						</span>
-						</div>
-						<div class="skills-item-meter">
-							<span class="skills-item-meter-active bg-breez" ></span>
-							<input class="truc" type="range" min="-100" max="100" value="0">
-						</div>
-					</div>
-
-					<div class="skills-item">
-						<div class="skills-item-info">
-							<span class="skills-item-title" id="title4">Yellow Progress</span>
-							<button type="button" id="edit_button4" value="Edit" class="editbutton" onclick="edit_row()" >Edit</button>
-							<button type="button" id="save_button4" value="Save" class="sauvegardebutton" onclick="save_row()" >Save</button>
-							<span class="skills-item-count">
-								<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-									<span class="skillunits" id="counter4" >									
+									<span class="skillunits" id="counter0" style="padding-right: 20px; padding-left: 20px;">									
 									</span>
 								</span>
 						</div>
@@ -2176,121 +2113,16 @@
 								<span class="skills-item-meter-active bg-blue" style="width: 50%"></span><br>
 						</div>
 						<div class="skills-item-meter" >
-							<span class="skills-item-meter-active bg-yellow" id="sima4"></span>
-							<input class="truc" type="range" min="-100" max="100" oninput="link_slider(slider4)" id="slider4">
+							<span class="skills-item-meter-active bg-yellow" id="sima0"></span>
+							<input class="truc" type="range" min="-100" max="100" oninput="link_slider(slider0)" id="slider0">
 						</div>
 					</div>
 				</div>
 				<button type="button" id="add_button" value="AddCriterion" class="btn btn-lg btn-primary" onclick="add_criterion()" >Add</button>
 				<input type='submit' class="btn btn-lg btn-primary" ></input>	
 			</form>
-			</div>
-			<script>
-				
-				// function linksliders(){
-				// 	console.log("wtf");
-				// 	var slider_els = document.querySelectorAll('input[type=range]');
-				// 	var slider_counts = document.querySelectorAll("span.skillunits");
-				// 	console.log(slider_counts);
-				// 	var slider_title = document.querySelectorAll("span.skills-item-title");
-				// 	var n_sliders = slider_els.length;	
-				// 	for(var i = 0; i < n_sliders; i++) {
-				// 		// Update the current slider value (each time you drag the slider handle)
-				// 		slider_els[i].setAttribute("id", "slider"+i);
-				// 		slider_counts[i].setAttribute("id", "counter"+i);
-						
-				// 		// slider_els[i].setAttribute("name", slider_title[i].textContent);
-						
-				// 		slider_els[i].addEventListener('input', 
-						
-				// 		function() {
-				// 			var brother = this.parentElement.childNodes[1];	
-				// 			//allows to retrieve the end number of a string : https://stackoverflow.com/questions/609574/get-the-first-ints-in-a-string-with-javascript
-				// 			var match = this.id.match(/\d+/);
-				// 			var div_number = parseInt(match[0], 10);
-				// 			var counter = document.getElementById("counter"+div_number);
-				// 			counter.innerHTML = this.value;									
-				// 			brother.style.width = 50 + this.value/2 + "%";
-				// 		})						
-				// 	}
-				// }
-					
-					function link_slider(slider){
-							// var max_div = document.getElementById("progressBar1");
-							
-							// var slider = document.getElementById(id);
-							console.log(slider);
-							console.log(slider.parentElement);
-							var match = slider.id.match(/\d+/);
-							var div_number = parseInt(match[0], 10);
-							var brother = document.getElementById("sima"+div_number);
-							console.log(brother);
-							console.log(div_number);
-							var counter = document.getElementById("counter"+div_number);
-							console.log(slider.value);
-							counter.innerHTML = slider.value;									
-							brother.style.width = 50 + slider.value/2 + "%";
-							brother.style.opacity = 1;	
-						}
-						
-						
-						http://talkerscode.com/webtricks/add-edit-and-delete-rows-from-table-dynamically-using-javascript.php
-						document.getElementById("save_button4").style.display="none";
-						
-						function edit_row(no){	
-						console.log("edit_button"+no);
-						console.log(document.getElementById("edit_button"+no));								
-						document.getElementById("edit_button"+no).style.display="none";
-						document.getElementById("save_button"+no).style.display="inline-block";
-							var name=document.getElementById("title"+no);																			
-							var name_data=name.innerHTML;																			
-							name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
-							}
-
-					function save_row(no){
-						var name_val=document.getElementById("name_text"+no).value;								
-						document.getElementById("title"+no).innerHTML=name_val;
-						document.getElementById("edit_button"+no).style.display="inline-block";
-						document.getElementById("save_button"+no).style.display="none";
-							}
-
-					function add_criterion(){
-						// var new_name=document.getElementById("new_name").value;
-						// console.log(n_sliders);
-						var max_div = document.getElementById("progressBar1");
-						var truc = max_div.querySelectorAll("div.skills-item");
-						console.log(truc);
-						var new_numero = truc.length+1;
-						console.log(new_numero);	
-						var table=document.getElementById("progressBar1");
-						var html = 		'<div class="skills-item-info id="sii'+new_numero+'">'+
-											'<span class="skills-item-title" id="title'+new_numero+'">Yellow Progress</span>'+
-											'<button type="button" id="edit_button'+new_numero+'" value="Edit" class="editbutton" onclick="edit_row('+new_numero+')" >Edit</button>'+
-											'<button type="button" id="save_button'+new_numero+'" value="Save" class="sauvegardebutton" onclick="save_row('+new_numero+')" >Save</button>'+
-												'<span class="skills-item-count" id="sic'+new_numero+'">'+
-													'<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0" id="countanimate'+new_numero+'"></span>'+
-													'<span class="skillunits" id="counter'+new_numero+'" >	'+								
-													'</span>'+
-												'</span>'+
-										'</div>'+
-										'<div class="skills-item-meter" id="simGlobal'+new_numero+'">'+
-												'<span class="skills-item-meter-active bg-blue" style="width: 50%; opacity: 1;" id="simaGlobal'+new_numero+'"></span><br>'+
-										'</div>'+
-										'<div class="skills-item-meter" id="sim'+new_numero+'">'+
-											'<span class="skills-item-meter-active bg-yellow" id="sima'+new_numero+'"></span>'+
-											'<input class="truc" type="range" min="-100" max="100" id="slider'+new_numero+'" oninput="link_slider(slider'+new_numero+')">'+
-										'</div>';
-									
-						var new_element = document.createElement("div");
-						new_element.setAttribute('class', "skills-item");
-						new_element.setAttribute('id', 'si'+new_numero+'');
-						new_element.innerHTML = html;
-						console.log(new_element);
-						table.appendChild(new_element);
-						document.getElementById("save_button"+new_numero).style.display="none";
-
-						}
-			</script>
+			</div>	
+			<script type="text/javascript" src="olympus/src/js/statistics.js"></script>		
 		</div>
 
 
