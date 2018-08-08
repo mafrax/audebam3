@@ -4264,7 +4264,8 @@ input.truc {
   position: absolute;
   left:-14px;
   bottom:0px;
-  top: -12px;
+  top: -10px;
+  opacity: 0.3;
   margin-left: 1em;
   color: #007aff;
 }
