@@ -1963,8 +1963,8 @@
 								</div>
 								
 								
+								
 								<div class="form-group label-floating">
-									<form action='/user/save' method="post" class="content">
 									<div class="ui-block" data-mh="pie-chart">
 										<div class="ui-block-title">
 											<div class="h6 title">Political Inclines</div>
@@ -1974,12 +1974,12 @@
 										<div class="ui-block-content " id="progressBar1">
 											<div class="skills-item">
 												<div class="skills-item-info">
-													<span class="skills-item-title" id="title0">Yellow Progress</span>
+													<span class="skills-item-title" id="title0" name="title0"><output name="truc" value="Progress"></output> </span>
 													<button type="button" id="edit_button0" value="Edit" class="button-success pure-button" onclick="edit_row(0)" >Edit</button>
 													<button type="button" id="save_button0" value="Save" class="button-success pure-secondary" onclick="save_row(0)" >Save</button>
 													<span class="skills-item-count">
 														<span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="62" data-from="0"></span>
-															<span class="skillunits" id="counter0" style="padding-right: 20px; padding-left: 20px;">									
+															<span class="skillunits" id="counter0">									
 															</span>
 														</span>
 												</div>
@@ -1988,14 +1988,14 @@
 												</div>
 												<div class="skills-item-meter" >
 													<span class="skills-item-meter-active bg-yellow" id="sima0"></span>
-													<input class="truc" type="range" min="-100" max="100" oninput="link_slider(slider0)" id="slider0">
+													<input class="truc" type="range" min="-100" max="100" oninput="link_slider(slider0)" id="slider0" name="slider0">
 												</div>
 											</div>
 										</div>
-										<button type="button" id="add_button" value="AddCriterion" class="btn btn-lg btn-primary" onclick="add_criterion()" >Add</button>
-										<input type='submit' class="btn btn-lg btn-primary" ></input>	
-									</form>
+										<button type="button" id="add_button" value="AddCriterion" class="btn btn-lg btn-primary" onclick="add_criterion()" style="margin-left: 10px; margin-right: 10px;">Add</button>
+										<input type='submit' class="btn btn-lg btn-primary" formaction="/user/save">
 									</div>
+								
 									<script>
 										
 											function link_slider(slider){
