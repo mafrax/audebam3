@@ -1974,7 +1974,8 @@
 										<div class="ui-block-content " id="progressBar1">
 											<div class="skills-item">
 												<div class="skills-item-info">
-													<span class="skills-item-title" id="title0" name="title0"><output name="truc" value="Progress"></output> </span>
+													<span class="skills-item-title" id="title0" name="title0">Yellow Progress</span>
+													<input type="hidden" id="custId0" name="pi0" value="truc">
 													<button type="button" id="edit_button0" value="Edit" class="button-success pure-button" onclick="edit_row(0)" >Edit</button>
 													<button type="button" id="save_button0" value="Save" class="button-success pure-secondary" onclick="save_row(0)" >Save</button>
 													<span class="skills-item-count">
@@ -2016,8 +2017,11 @@
 											
 											
 											http://talkerscode.com/webtricks/add-edit-and-delete-rows-from-table-dynamically-using-javascript.php
+											console.log("tructruc");
 											document.getElementById("save_button0").style.display="none";
-											
+											var hidden = document.getElementById("custId0");
+											console.log(hidden);
+
 											function edit_row(no){	
 											console.log("edit_button"+no);
 											console.log(document.getElementById("edit_button"+no));								
@@ -2029,7 +2033,10 @@
 												}
 
 										function save_row(no){
-											var name_val=document.getElementById("name_text"+no).value;								
+											var name_val=document.getElementById("name_text"+no).value;	
+											var hidden_field = document.getElementById("custId"+no);
+											console.log(hidden_field);
+											hidden_field.setAttribute("value", name_val);							
 											document.getElementById("title"+no).innerHTML=name_val;
 											document.getElementById("edit_button"+no).style.display="inline-block";
 											document.getElementById("save_button"+no).style.display="none";
@@ -2046,6 +2053,7 @@
 											var table=document.getElementById("progressBar1");
 											var html = 		'<div class="skills-item-info id="sii'+new_numero+'">'+
 																'<span class="skills-item-title" id="title'+new_numero+'">Yellow Progress</span>'+
+																'<input type="hidden" id="custId'+new_numero+'" name="pi'+new_numero+'" value="truc">'+
 																'<button type="button" id="edit_button'+new_numero+'" value="Edit" class="button-success pure-button" onclick="edit_row('+new_numero+')" >Edit</button>'+
 																'<button type="button" id="save_button'+new_numero+'" value="Save" class="button-success pure-secondary" onclick="save_row('+new_numero+')" >Save</button>'+
 																	'<span class="skills-item-count" id="sic'+new_numero+'">'+
