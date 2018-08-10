@@ -61,7 +61,12 @@ module.exports = function(app, passport) {
 		app.post('/user/save', isLoggedIn, function(req, res) {
 			console.log("save entered");
 			console.log(req);
-		
+		//https://www.remwebdevelopment.com/blog/sql/some-basic-and-useful-cypher-queries-for-neo4j-201.html
+		//https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887
+
+
+
+
 			res.redirect('/profile');
 		});
 
